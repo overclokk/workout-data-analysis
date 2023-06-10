@@ -1,0 +1,14 @@
+# PyCharm
+.idea/
+
+# virtualenv
+venv/
+
+# Data
+data/
+
+# Python
+__pycache__/
+debug*
+example.py
+main.py
