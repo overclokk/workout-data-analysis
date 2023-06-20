@@ -9,6 +9,34 @@ from constants import DATE, TIME, WEIGHT, REPS, LIFTED, REPS_WITH_LOAD, REPS_BW,
 
 
 class StrongDataTable:
+    # Strong CSV columns
+    DATE: str = 'Date'
+    WORKOUT_NAME: str = "Workout Name"
+    EXERCISE_NAME: str = "Exercise Name"
+    SET_ORDER: str = "Set Order"
+    WEIGHT: str = "Weight"
+    WEIGHT_UNIT = 'Weight Unit'
+    REPS: str = "Reps"
+    RPE: str = "RPE"
+    DISTANCE: str = "Distance"
+    DISTANCE_UNIT: str = "Distance Unit"
+    SECONDS: str = "Seconds"
+    NOTES: str = "Notes"
+    WORKOUT_NOTES: str = "Workout Notes"
+    WORKOUT_DURATION: str = "Workout Duration"
+
+    # Strong CSV columns that are not in the original CSV
+    TIME: str = 'Time'
+    LIFTED: str = 'Total wight lifted'
+    REPS_WITH_LOAD: str = 'Reps with load'
+    REPS_BW: str = 'Reps BW'
+    DAY_NAME: str = 'Weekday'
+    MONTH_NAME: str = 'Month'
+    MONTH: str = 'Month'
+    YEAR: str = 'Year'
+    WEEK_NUMBER: str = 'Week_Number'
+    YEAR_WEEK_NUMBER: str = YEAR + "-" + WEEK_NUMBER
+
     def __init__(self, csv_file_path: str, exercises: Dict[str, Dict[str, str]]):
         self.options = None
         self.csv_file_path = csv_file_path

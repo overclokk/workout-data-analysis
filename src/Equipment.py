@@ -1,12 +1,14 @@
 class Equipment:
-    CABLE = 'Cable'
     KEY = 'Equipment'
+
+    AB_WHEEL = 'ab_wheel'
+    CABLE = 'Cable'
     BANDS = 'bands'
     BARBELL = 'barbell'
-    BODYWEIGHT = 'bodyweight'
-    DUMBELL = 'dumbell'
+    BODY_WEIGHT = 'bodyweight'
+    DUMBBELL = 'dumbbell'
     EZ_BAR = 'ez_bar'
-    KETTLEBELL = 'kettlebell'
+    KETTLE_BELL = 'kettle-bell'
     MACHINE = 'machine'
     MEDICINE_BALL = 'medicine_ball'
     PLATE = 'plate'

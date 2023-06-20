@@ -6,6 +6,7 @@ from src.MovementType import MovementType
 from src.MovementDirection import MovementDirection
 from src.MuscleContractions import MuscleContractions
 from src.MuscleGroup import MuscleGroup
+from src.MuscleGroupSecondary import MuscleGroupSecondary
 from src.MuscleLength import MuscleLength
 from src.CategoryGenerator import CategoryGenerator
 
@@ -15,6 +16,7 @@ category_generator_config = [
     MovementType,
     MovementDirection,
     MuscleGroup,
+    MuscleGroupSecondary,
     MuscleLength,
     MuscleContractions,
 ]
@@ -22,374 +24,732 @@ category_generator_config = [
 generator = CategoryGenerator(category_generator_config)
 
 Exercises: Dict[str, Dict[str, str]] = {
-    'Bench Press (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CHEST, MuscleGroup.TRICEPS, MuscleGroup.DELTOID],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Squat (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.QUADRICEPS, MuscleGroup.HAMSTRINGS, MuscleGroup.GLUTES, MuscleGroup.CALVES],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Lat Pulldown (Cable)': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Leg Extension (Machine)': generator.generate(
-        Equipment.MACHINE,
-        ExerciseType.COMPOUND,
-        MovementType.LEGS,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.QUADRICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-
-    'Triceps Extension': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.TRICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Bicep Curl (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.ISOLATION,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Bench Press - Close Grip (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.TRICEPS, MuscleGroup.CHEST, MuscleGroup.DELTOID],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Overhead Press (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.DELTOID, MuscleGroup.TRICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Lat Pulldown - Underhand (Band)': generator.generate(
-        Equipment.BANDS,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Front Squat (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.QUADRICEPS, MuscleGroup.HAMSTRINGS, MuscleGroup.GLUTES, MuscleGroup.CALVES],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Incline Bench Press (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.INCLINE,
-        [MuscleGroup.CHEST, MuscleGroup.TRICEPS, MuscleGroup.DELTOID],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Cable Crossover': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CHEST],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Deadlift (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES, MuscleGroup.HAMSTRINGS, MuscleGroup.BACK, MuscleGroup.CALVES],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Chest Fly (Band)': generator.generate(
-        Equipment.BANDS,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CHEST],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Lat Pulldown (Single Arm)': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Bench Dip': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.TRICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Front Raise (Plate)': generator.generate(
-        Equipment.PLATE,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.DELTOID],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Bicep Curl (Cable)': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.ISOLATION,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Front Raise (Cable)': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.DELTOID],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Pendlay Row (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Plank': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CORE],
-        MuscleLength.NORMAL,
-        MuscleContractions.ISOMETRIC,
-    ),
-    'Romanian Deadlift (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.HAMSTRINGS, MuscleGroup.GLUTES, MuscleGroup.BACK],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Inverted Row (Bodyweight)': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Incline Row (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.INCLINE,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Kneeling Pulldown (Band)': generator.generate(
-        Equipment.BANDS,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Incline Curl (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.ISOLATION,
-        MovementType.PULL,
-        MovementDirection.INCLINE,
-        [MuscleGroup.BICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Seated Leg Press (Machine)': generator.generate(
-        Equipment.MACHINE,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Incline Bench Press (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.INCLINE,
-        [MuscleGroup.CHEST, MuscleGroup.DELTOID, MuscleGroup.TRICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Lateral Raise (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.DELTOID],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Side Plank': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CORE],
-        MuscleLength.NORMAL,
-        MuscleContractions.ISOMETRIC,
-    ),
-    'Triceps Extension (Cable)': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.TRICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Seated Row (Cable)': generator.generate(
-        Equipment.CABLE,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Pull Up': generator.generate(
-        Equipment.PULL_UP_BAR,
-        ExerciseType.COMPOUND,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BACK, MuscleGroup.BICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Push Up': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.CHEST, MuscleGroup.DELTOID, MuscleGroup.TRICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Floor Press (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CHEST, MuscleGroup.DELTOID, MuscleGroup.TRICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Overhead Press (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.COMPOUND,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.DELTOID, MuscleGroup.TRICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Bicep Curl (Barbell)': generator.generate(
-        Equipment.BARBELL,
-        ExerciseType.ISOLATION,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BICEPS],
-        MuscleLength.NORMAL,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'TricepsTRX': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.TRICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Biceps TRX': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.ISOLATION,
-        MovementType.PULL,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.BICEPS],
-        MuscleLength.SHORT_LENGTH,
-        MuscleContractions.CONCENTRIC,
-    ),
-    'Triceps Extension (Dumbbell)': generator.generate(
-        Equipment.DUMBELL,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.VERTICAL,
-        [MuscleGroup.TRICEPS],
-        MuscleLength.LONG_LENGTH,
-        MuscleContractions.ECCENTRIC,
-    ),
-    'Ab Wheel': generator.generate(
-        Equipment.BODYWEIGHT,
-        ExerciseType.ISOLATION,
-        MovementType.PUSH,
-        MovementDirection.HORIZONTAL,
-        [MuscleGroup.CORE],
-        MuscleLength.NORMAL,
-        MuscleContractions.ECCENTRIC,
-    ),
+    'Bench Press (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Squat (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS, MuscleGroupSecondary.CALVES)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Bulgarian Split Squat': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS, MuscleGroupSecondary.CALVES)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Box Squat (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS, MuscleGroupSecondary.CALVES)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Pistol Squat': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS, MuscleGroupSecondary.CALVES)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Squat (Bodyweight)': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS, MuscleGroupSecondary.CALVES)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Lat Pulldown (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Leg Extension (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Triceps Extension': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bicep Curl (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bench Press - Close Grip (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Overhead Press (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Lat Pulldown - Underhand (Band)': generator
+        .with_equipment(Equipment.BANDS)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Front Squat (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS, MuscleGroupSecondary.GLUTES, MuscleGroupSecondary.CALVES)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Incline Bench Press (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.INCLINE)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Cable Crossover': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Deadlift (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.HAMSTRINGS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(
+            MuscleGroupSecondary.QUADRICEPS,
+            MuscleGroupSecondary.BACK,
+            MuscleGroupSecondary.CALVES
+        )
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Chest Fly (Band)': generator
+        .with_equipment(Equipment.BANDS)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lat Pulldown (Single Arm)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bench Dip': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary(MuscleGroupSecondary.CHEST, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Front Raise (Plate)': generator
+        .with_equipment(Equipment.PLATE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bicep Curl (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Front Raise (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Pendlay Row (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Plank': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CORE)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ISOMETRIC)
+        .build(),
+    'Romanian Deadlift (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.HAMSTRINGS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BACK)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Inverted Row (Bodyweight)': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Incline Row (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.INCLINE)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Kneeling Pulldown (Band)': generator
+        .with_equipment(Equipment.BANDS)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Incline Curl (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.INCLINE)
+        .with_muscle_group(MuscleGroup.BICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Seated Leg Press (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS)
+        .with_muscle_group_secondary(MuscleGroupSecondary.GLUTES)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Incline Bench Press (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.INCLINE)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lateral Raise (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Side Plank': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CORE)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ISOMETRIC)
+        .build(),
+    'Triceps Extension (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Seated Row (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Pull Up': generator
+        .with_equipment(Equipment.PULL_UP_BAR)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Push Up': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Floor Press (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS, MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Overhead Press (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bicep Curl (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'TricepsTRX': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Biceps TRX': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.SHORT_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Triceps Extension (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Ab Wheel': generator
+        .with_equipment(Equipment.AB_WHEEL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CORE)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Hammer Curl (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bent Over One Arm Row (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Romanian Deadlift (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(
+            MuscleGroupSecondary.HAMSTRINGS,
+            MuscleGroupSecondary.QUADRICEPS,
+            MuscleGroupSecondary.BACK
+        )
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Triceps Extension (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Chin Up': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Pull Up (Band)': generator
+        .with_equipment(Equipment.BANDS)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lunge (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Hip Thrust (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.GLUTES)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Leg Press': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS)
+        .with_muscle_group_secondary(MuscleGroupSecondary.GLUTES)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Chest Press (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.DELTOID, MuscleGroupSecondary.TRICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Sumo Deadlift (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.GLUTES, MuscleGroup.QUADRICEPS)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BACK, MuscleGroupSecondary.HAMSTRINGS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lying Leg Curl (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.HAMSTRINGS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Hip Thrust (Bodyweight)': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.GLUTES)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Shoulder Press (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Skullcrusher (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Push Press': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary(MuscleGroupSecondary.TRICEPS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Bench Press (Dumbbell)': generator
+        .with_equipment(Equipment.DUMBBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.CHEST)
+        .with_muscle_group_secondary(MuscleGroupSecondary.DELTOID, MuscleGroupSecondary.TRICEPS)
+        .with_muscle_length(MuscleLength.SHORT_LENGTH)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Lat Pulldown - Wide Grip (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lat Pulldown (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.BICEPS)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Triceps Pushdown (Cable - Straight Bar)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Glute Kickback (Machine)': generator
+        .with_equipment(Equipment.MACHINE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.GLUTES)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lunge (Bodyweight)': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Lunge (Barbell)': generator
+        .with_equipment(Equipment.BARBELL)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.QUADRICEPS, MuscleGroup.GLUTES)
+        .with_muscle_group_secondary(MuscleGroupSecondary.HAMSTRINGS)
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Reverse Fly (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.BACK)
+        .with_muscle_group_secondary(MuscleGroupSecondary.DELTOID)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Lateral Raise (Cable)': generator
+        .with_equipment(Equipment.CABLE)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.HORIZONTAL)
+        .with_muscle_group(MuscleGroup.DELTOID)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
+    'Handstand Push Up': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.COMPOUND)
+        .with_movement_type(MovementType.PUSH)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.DELTOID, MuscleGroup.TRICEPS)
+        .with_muscle_group_secondary(MuscleGroupSecondary.CHEST)
+        .with_muscle_length(MuscleLength.LONG_LENGTH)
+        .with_muscle_contractions(MuscleContractions.ECCENTRIC)
+        .build(),
+    'Reverse Crunch': generator
+        .with_equipment(Equipment.BODY_WEIGHT)
+        .with_exercise_type(ExerciseType.ISOLATION)
+        .with_movement_type(MovementType.PULL)
+        .with_movement_direction(MovementDirection.VERTICAL)
+        .with_muscle_group(MuscleGroup.ABDOMINAL)
+        .with_muscle_group_secondary()
+        .with_muscle_length(MuscleLength.NORMAL)
+        .with_muscle_contractions(MuscleContractions.CONCENTRIC)
+        .build(),
 }

@@ -9,11 +9,11 @@ exercises = data[EXERCISE_NAME].unique()
 
 print('-------------------')
 
-not_in_exercises = []
+not_in_exercises_dictionary = []
 exercises_with_less_category = []
 for exercise in exercises:
     if exercise not in Exercises:
-        not_in_exercises.append(exercise)
+        not_in_exercises_dictionary.append(exercise)
         continue
 
     count = len(Exercises[exercise].values()) - list(Exercises[exercise].values()).count('')
@@ -23,9 +23,9 @@ for exercise in exercises:
 
 
 print('-------------------')
-print('Not in Exercises dictionary: ' + str(len(not_in_exercises)))
+print('Not in Exercises dictionary: ' + str(len(not_in_exercises_dictionary)))
 print('-------------------')
-print('\n'.join(not_in_exercises))
+print('\n'.join(not_in_exercises_dictionary))
 
 print('-------------------')
 count_categories = len(category_generator_config)

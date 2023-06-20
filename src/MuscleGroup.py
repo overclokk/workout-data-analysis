@@ -13,6 +13,7 @@ class MuscleGroup:
     NECK = 'neck'
     ABS = 'abs'
     CORE = 'core'
+    ABDOMINAL = 'abdominal'
     OBLIQUES = 'obliques'
 
     # Arms
@@ -20,6 +21,9 @@ class MuscleGroup:
     TRICEPS = 'triceps'
     FOREARMS = 'forearms'
     DELTOID = 'deltoid'
+    ANTERIOR_DELTOID = 'anterior deltoid'
+    LATERAL_DELTOID = 'lateral deltoid'
+    POSTERIOR_DELTOID = 'posterior deltoid'
 
     # Legs
     QUADRICEPS = 'quadriceps'
