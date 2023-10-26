@@ -1,5 +1,6 @@
 from typing import Union, Dict
 
+from src.StrongDataTable import StrongDataTable
 from src.Equipment import Equipment
 from src.ExerciseType import ExerciseType
 from src.MovementDirection import MovementDirection
@@ -10,10 +11,14 @@ from src.MuscleGroupSecondary import MuscleGroupSecondary
 from src.MuscleLength import MuscleLength
 
 
-class CategoryGenerator:
+class ExerciseEntityGenerator:
     def __init__(self, classes: list):
         self.__category: Dict = {}
         self.classes = classes
+
+    def for_name(self, name: str):
+        self.__category[StrongDataTable.EXERCISE_NAME] = name
+        return self
 
     def with_equipment(self, value: str):
         self.__assert_value_in_class(value, Equipment)
@@ -46,13 +51,16 @@ class CategoryGenerator:
             self.__category[cls.KEY] = ""
             return self
 
+        muscle_values = []
         for value in values:
             if not isinstance(value, list):
                 value = [value]
             # assert all values in list are in cls
             for v in value:
                 self.__assert_value_in_class(v, cls)
-            self.__category[cls.KEY] = value
+                muscle_values.append(v)
+
+        self.__category[cls.KEY] = muscle_values
         return self
 
     def with_muscle_length(self, value: str):

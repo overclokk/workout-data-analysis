@@ -21,9 +21,9 @@ class MuscleGroup:
     TRICEPS = 'triceps'
     FOREARMS = 'forearms'
     DELTOID = 'deltoid'
-    ANTERIOR_DELTOID = 'anterior deltoid'
-    LATERAL_DELTOID = 'lateral deltoid'
-    POSTERIOR_DELTOID = 'posterior deltoid'
+    FRONT_DELTOID = 'front deltoid'
+    SIDE_DELTOID = 'side deltoid'
+    REAR_DELTOID = 'rear deltoid'
 
     # Legs
     QUADRICEPS = 'quadriceps'
